@@ -31,21 +31,15 @@ def fileio(filename):
     except IOError:
         print("The file is not exist.")
     try:
-        kdata = open('kdata.txt','w')
-        mdata = open('mdata.txt','w')
-        pdata = open('pdata.txt','w')
-        print_lol(K,fh=kdata)
-        print_lol(M,fh=mdata)
-        print_lol(P,fh=pdata)
+        with open('kdata.txt','w') as kdata:
+            print_lol(K,fh=kdata)
+        with open('mdata.txt','w') as mdata:
+            print_lol(M,fh=mdata)
+        with open('pdata.txt','w') as pdata:
+            print_lol(P,fh=pdata)
+            
     except IOError as err:
         print('File error: '+str(err))
-    finally:
-        if 'kdata' in locals():
-            kdata.close()
-        if 'mdata' in locals():
-            mdata.close()
-        if 'pdata' in locals():
-            pdata.close()
-        
+
                 
     
