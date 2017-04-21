@@ -1,5 +1,6 @@
 #coding:utf-8
 from nester import print_lol
+import pickle
 def fileio(filename):
     K = []
     M = []
@@ -31,15 +32,17 @@ def fileio(filename):
     except IOError:
         print("The file is not exist.")
     try:
-        with open('kdata.txt','w') as kdata:
-            print_lol(K,fh=kdata)
-        with open('mdata.txt','w') as mdata:
-            print_lol(M,fh=mdata)
-        with open('pdata.txt','w') as pdata:
-            print_lol(P,fh=pdata)
+        with open('kdata.txt','wb') as kdata:
+            pickle.dump(K,kdata)
+        with open('mdata.txt','wb') as mdata:
+            pickle.dump(M,mdata)
+        with open('pdata.txt','wb') as pdata:
+            pickle.dump(P,pdata)
             
     except IOError as err:
         print('File error: '+str(err))
+    except pickle.PickleError as perr:
+        print('Pickling error: '+str(perr))
 
                 
     
