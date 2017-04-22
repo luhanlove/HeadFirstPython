@@ -29,6 +29,12 @@ print(sorted([sanitize(t) for t in julie]))
 print(sorted([sanitize(t) for t in mikey]))
 print(sorted([sanitize(t) for t in sarah]))
 
+#使用set集合
+print(sorted(set([sanitize(t) for t in james]))[0:3])
+print(sorted(set([sanitize(t) for t in julie]))[0:3])
+print(sorted(set([sanitize(t) for t in mikey]))[0:3])
+print(sorted(set([sanitize(t) for t in sarah]))[0:3])
+
 
 
 
