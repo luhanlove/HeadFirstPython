@@ -6,6 +6,7 @@ def read_coach(file):
         return data.strip().split(',')
     except IOError as err:
         print('open file err: '+str(err))
+        return(None)
 
 james = read_coach('james.txt')
 julie = read_coach('julie.txt')
@@ -23,6 +24,12 @@ def sanitize(time_string):
         return (time_string)
     (mins, secs) = time_string.split(splitter)
     return (mins+'.'+secs)
+
+(james_name,james_birth) = james.pop(0),james.pop(0)
+(julie_name,julie_birth) = julie.pop(0),julie.pop(0)
+(mikey_name,mikey_birth) = mikey.pop(0),mikey.pop(0)
+(sarah_name,sarah_birth) = sarah.pop(0),sarah.pop(0)
+print(james_name, james_birth)
 
 print(sorted([sanitize(t) for t in james]))
 print(sorted([sanitize(t) for t in julie]))
