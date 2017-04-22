@@ -9,16 +9,25 @@ def sanitize(time_string):
     (mins, secs) = time_string.split(splitter)
     return (mins+'.'+secs)
 
+class Athlete:
+    def __init__(self,a_name,a_dob=None,a_times=[]):
+        self.name = a_name
+        self.dob = a_dob
+        self.times = a_times
+    def top3(self):
+        return sorted(set([sanitize(t) for t in self.times]))[0:3]
+    def add_time(self,item):
+        self.times.append(item)
+    def add_times(self,l):
+        self.times.extend(l)
+
 def read_coach(file):
     try:
         with open(file) as f:
             data = f.readline()
         data = data.strip().split(',')
-        dic = {}
-        dic['Name'] = data.pop(0)
-        dic['Birth'] = data.pop(0)
-        dic['times'] = sorted(set([sanitize(t) for t in data]))[0:3]
-        return dic
+        return Athlete(data.pop(0),data.pop(0),data)
+    
     except IOError as err:
         print('open file err: '+str(err))
         return(None)
@@ -30,7 +39,8 @@ sarah = read_coach('sarah.txt')
 
 print(james,julie,mikey,sarah)
 
-
+james.add_time('2.23')
+print(james.top3())
 
 
 
