@@ -21,6 +21,16 @@ class Athlete:
     def add_times(self,l):
         self.times.extend(l)
 
+
+class AthleteList(list):
+    def __init__(self,a_name,a_dob=None,a_time=[]):
+        list.__init__([])
+        self.name = a_name
+        self.dob = a_dob
+        self.extend(a_time)
+    def top3(self):
+        return (sorted(set([sanitize(t) for t in self]))[0:3])
+
 def read_coach(file):
     try:
         with open(file) as f:
@@ -43,7 +53,10 @@ james.add_time('2.23')
 print(james.top3())
 
 
-
+vera = AthleteList('vera iv')
+vera.append('1.31')
+vera.extend(['1.22','1.33'])
+print(vera.top3())
 
 
 
